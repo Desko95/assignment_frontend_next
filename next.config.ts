@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "deserving-harmony-9f5ca04daf.media.strapiapp.com",
+        hostname: "https://integral-excellence-6da4e4418a.strapiapp.com",
       },
       {
         protocol: "https",

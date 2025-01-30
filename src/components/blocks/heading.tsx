@@ -14,7 +14,7 @@ interface HeadingProps {
     }[]; // `links` is marked optional here
 }
 
-export function Heading({ heading, subHeading, text, links = [] }: HeadingProps) {
+export function Heading({ heading, subHeading, text, links }: Readonly<HeadingProps>) {
     return (
         <section className="container flex flex-col items-center gap-6 pt-24 pb-6 sm:gap-7">
             <div className="flex flex-col gap-3">
@@ -33,26 +33,27 @@ export function Heading({ heading, subHeading, text, links = [] }: HeadingProps)
                 </p>
             )}
             <div className="grid grid-cols-2 gap-3">
-                {links.map((link, index) => {
-                    return (
-                        <Button
-                            key={index}
-                            size="lg"
-                            asChild
-                            variant="outline"
-                            className="h-12 cursor-pointer border-border text-base sm:h-14 sm:px-10"
-                        >
-                            <Link
-                                href={link.href}
-                                target={link.isExternal ? "_blank" : "_self"}
-                                rel="noopener noreferrer"
-                                prefetch
+                {links && links.map((link, index) => {
+                        return (
+                            <Button
+                                key={index}
+                                size="lg"
+                                asChild
+                                variant="outline"
+                                className="h-12 bg-pink-700 cursor-pointer border-border text-base sm:h-14 sm:px-10"
                             >
-                                {link.label}
-                            </Link>
-                        </Button>
-                    );
-                })}
+                                <Link
+                                    href={link.href}
+                                    target={link.isExternal ? "_blank" : "_self"}
+                                    rel="noopener noreferrer"
+                                    prefetch
+                                >
+                                    {link.label}
+                                </Link>
+                            </Button>
+                        );
+                    })
+                }
             </div>
         </section>
     );

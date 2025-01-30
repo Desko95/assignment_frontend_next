@@ -25,6 +25,7 @@ const homePageQuery = qs.stringify({
         },
         "blocks.heading": {
           populate: "*",
+
         },
       },
     },
@@ -34,6 +35,7 @@ const homePageQuery = qs.stringify({
 async function loader() {
   const authToken = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   const BASE_URL = getStrapiURL();
+  console.log("base urs: ",BASE_URL);
   const path = "/api/home-page";
   const url = new URL(path, BASE_URL);
 
@@ -54,26 +56,27 @@ export default async function HomeRoute() {
   const data = await loader();
   const blocks = data.blocks;
 
-  console.dir(blocks, "blocks");
+  // Replace `image.url` with your actual image URL or fetched Strapi image.
+  //const backgroundImageUrl = "https://images.prismic.io/encord/Zw1RxIF3NbkBXanh_image-58-.png?auto=format%2Ccompress&fit=max&w=583&h=324&fm=webp";
 
   return (
-      <div className="pb-20" >
+      <div>
         {/* Render all blocks */}
         {blocks.map((block: Block, index: number) => {
           return blockRenderer(block, index);
         })}
 
-        {/* Hardcoded CTA Button specifically for heading block */}
+        {/* Hardcoded CTA Button
         <div className="flex justify-center mt-10">
           <a
               href="https://github.com/Desko95/assignment"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 text-lg font-semibold text-white bg-pink-700 rounded-lg hover:bg-pink-500 transition duration-200"
+              className="px-6 py-3 text-lg font-semibold text-white bg-pink-700 rounded-lg hover:opacity-80 transition duration-200"
           >
             Sign Up
           </a>
-        </div>
+        </div>*/}
       </div>
   );
 }

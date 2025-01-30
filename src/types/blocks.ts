@@ -4,7 +4,7 @@ type ComponentType =
   | "blocks.hero"
   | "blocks.heading"
   | "blocks.card-carousel"
-  | "blocks.section";
+  | "blocks.section"
 
 
 
