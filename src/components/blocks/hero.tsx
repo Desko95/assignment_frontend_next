@@ -2,6 +2,7 @@ import Link from "next/link";
 import { StrapiImage } from "@/components/custom/strapi-image";
 import { Button } from "@/components/ui/button";
 import type { HeroProps } from "@/types/blocks";
+
 export function Hero({
   subHeading,
   heading,

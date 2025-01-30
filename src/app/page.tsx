@@ -23,7 +23,9 @@ const homePageQuery = qs.stringify({
             cards: true,
           },
         },
-        "blocks.heading": true,
+        "blocks.heading": {
+          populate: "*",
+        },
       },
     },
   },
@@ -51,79 +53,27 @@ async function loader() {
 export default async function HomeRoute() {
   const data = await loader();
   const blocks = data.blocks;
-   console.dir(blocks, "blocks");
+
+  console.dir(blocks, "blocks");
+
   return (
-    <div>
-      {blocks.map((block: Block, index: number) => {
-        return blockRenderer(block, index);
-      })}
-    </div>
+      <div className="pb-20" >
+        {/* Render all blocks */}
+        {blocks.map((block: Block, index: number) => {
+          return blockRenderer(block, index);
+        })}
+
+        {/* Hardcoded CTA Button specifically for heading block */}
+        <div className="flex justify-center mt-10">
+          <a
+              href="https://github.com/Desko95/assignment"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 text-lg font-semibold text-white bg-pink-700 rounded-lg hover:bg-pink-500 transition duration-200"
+          >
+            Sign Up
+          </a>
+        </div>
+      </div>
   );
 }
-
-// const mockData = {
-//   heading: {
-//     id: 1,
-//     documentId: "1",
-//     subHeading: "Welcome to Coding After Thirty",
-//     heading: "Building LMS with Next.js and Strapi 5",
-//     text: "This is a project that I am currently building to use as an example and learn more on how to create Learning Management Systems.",
-//   },
-//   hero: {
-//     id: 1,
-//     documentId: "1",
-//     subHeading: "Welcome to Coding After Thirty",
-//     heading: "Building LMS with Next.js and Strapi 5",
-//     text: "This is a project that I am currently building to use as an example and learn more on how to create Learning Management Systems.",
-//     links: [
-//       {
-//         id: 1,
-//         label: "Get Started",
-//         href: "auth/signup",
-//         isExternal: false,
-//       },
-//       {
-//         id: 2,
-//         label: "Learn More",
-//         href: "/",
-//         isExternal: false,
-//       },
-//     ],
-//     image: {
-//       src: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-//       alt: "A placeholder image",
-//       width: 600,
-//       height: 400,
-//     },
-//   },
-//   cardCarousel: {
-//     id: 1,
-//     documentId: "1",
-//     cardCarouselItems: [
-//       {
-//         id: 1,
-//         documentId: "1",
-//         heading: "Visual Builder",
-//         subHeading:
-//           "Edit HTML, Tailwind & React components with a visual builder and see your changes in real-time.",
-//         icon: "Palette",
-//       },
-//       {
-//         id: 2,
-//         documentId: "2",
-//         heading: "Interactive Learning",
-//         subHeading:
-//           "Learn through hands-on exercises and real-world projects with immediate feedback and guidance.",
-//         icon: "Download",
-//       },
-//       {
-//         id: 3,
-//         documentId: "3",
-//         heading: "Progress Tracking",
-//         subHeading:
-//           "Monitor your learning journey with detailed analytics and achievement milestones.",
-//         icon: "Sparkles",
-//       },
-//     ],
-//   },
-// };
